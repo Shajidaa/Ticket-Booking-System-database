@@ -193,3 +193,12 @@ WHERE tournament_category = 'Champions League'
 
 
 --Query 2: Search for all users whose full names start with 'Tanvir' or contain the phrase 'Haque' (case-insensitive).
+
+
+SELECT 
+    user_id, 
+    full_name, 
+    email
+FROM users
+WHERE full_name LIKE 'Tanvir%' 
+   OR LOWER(full_name) LIKE '%haque%';
