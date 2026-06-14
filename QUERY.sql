@@ -1,7 +1,4 @@
--- =========================================================================
--- SYSTEM: Football Ticket Booking System Database Setup Template
--- DESCRIPTION: Completed DDL with Exact Data Types & Relational Keys
--- =========================================================================
+
 
 DROP TABLE IF EXISTS Bookings;
 
@@ -222,3 +219,28 @@ FROM bookings b
 INNER JOIN users u ON b.user_id = u.user_id
 INNER JOIN matches m ON b.match_id = m.match_id
 ORDER BY b.booking_id ASC;
+--query 5
+
+SELECT 
+    u.user_id, 
+    u.full_name, 
+    b.booking_id
+FROM users u
+LEFT JOIN bookings b ON u.user_id = b.user_id
+ORDER BY u.user_id ASC, b.booking_id ASC;
+
+--query 6
+SELECT 
+    booking_id, 
+    match_id, 
+    total_cost
+FROM bookings
+WHERE total_cost > (SELECT AVG(total_cost) FROM bookings);
+--query 7
+SELECT 
+    match_id, 
+    fixture, 
+    base_ticket_price
+FROM matches
+ORDER BY base_ticket_price DESC
+LIMIT 2 OFFSET 1;
